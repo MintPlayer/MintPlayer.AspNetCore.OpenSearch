@@ -8,7 +8,7 @@ Open the NuGet package manager and install `MintPlayer.AspNetCore.OpenSearch` in
 ### Package manager console
 Install-Package MintPlayer.AspNetCore.OpenSearch
 ##Usage
-### Adding OpenSearch middleware
+## Adding OpenSearch middleware
 Add OpenSearch before UseMVC in the middleware pipeline (Startup@Configure):
 
     app.UseOpenSearch(options =>
