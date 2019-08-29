@@ -7,8 +7,8 @@ https://www.nuget.org/packages/MintPlayer.AspNetCore.OpenSearch/
 Open the NuGet package manager and install `MintPlayer.AspNetCore.OpenSearch` in your project
 ### Package manager console
 Install-Package MintPlayer.AspNetCore.OpenSearch
-##Usage
-## Adding OpenSearch middleware
+## Usage
+### Adding OpenSearch middleware
 Add OpenSearch before UseMVC in the middleware pipeline (Startup@Configure):
 
     app.UseOpenSearch(options =>
@@ -21,3 +21,7 @@ Add OpenSearch before UseMVC in the middleware pipeline (Startup@Configure):
         options.Description = "Search music on MintPlayer";
         options.Contact = "email@example.com";
     });
+### Reference OpenSearchDescription from HTML
+Open your index.html (angular app) or _ViewStart.cshtml (Razor) and add a link to your OpenSearchDescription:
+
+    <link rel="search" type="application/opensearchdescription+xml" href="/opensearch.xml" title="Search through MintPlayer">
