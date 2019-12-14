@@ -75,15 +75,8 @@ namespace AspNetCoreOpenSearch.Extensions
                 .MapVerb("GET", opt.SearchUrl, async (context) =>
                 {
                     var searchTerms = (string)context.GetRouteValue("searchTerms");
-                    var location = await service.PerformSearch(searchTerms);
-                    if (location is Microsoft.AspNetCore.Mvc.RedirectResult)
-                    {
-                        context.Response.Redirect(((Microsoft.AspNetCore.Mvc.RedirectResult)location).Url);
-                    }
-                    else
-                    {
-                        //context.Response.(location);
-                    }
+                    var result = await service.PerformSearch(searchTerms);
+                    context.Response.Redirect(result.Url);
                 });
             var router = builder.Build();
             #endregion

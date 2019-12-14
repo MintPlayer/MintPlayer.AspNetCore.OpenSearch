@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29215.179
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCoreOpenSearch", "AspNetCoreOpenSearch\AspNetCoreOpenSearch.csproj", "{CDE0D0D9-45A8-45D7-BF0D-B3B7D5D3B1D2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCoreOpenSearch", "AspNetCoreOpenSearch\AspNetCoreOpenSearch.csproj", "{CDE0D0D9-45A8-45D7-BF0D-B3B7D5D3B1D2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCoreOpenSearch.Test", "AspNetCoreOpenSearch.Test\AspNetCoreOpenSearch.Test.csproj", "{CE8CAD36-3D8E-4E62-898A-DD12A609630E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{CDE0D0D9-45A8-45D7-BF0D-B3B7D5D3B1D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CDE0D0D9-45A8-45D7-BF0D-B3B7D5D3B1D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CDE0D0D9-45A8-45D7-BF0D-B3B7D5D3B1D2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CE8CAD36-3D8E-4E62-898A-DD12A609630E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE8CAD36-3D8E-4E62-898A-DD12A609630E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE8CAD36-3D8E-4E62-898A-DD12A609630E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE8CAD36-3D8E-4E62-898A-DD12A609630E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

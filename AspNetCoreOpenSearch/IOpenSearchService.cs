@@ -9,6 +9,6 @@ namespace AspNetCoreOpenSearch
     public interface IOpenSearchService
     {
         Task<IEnumerable<string>> ProvideSuggestions(string searchTerms);
-        Task<IActionResult> PerformSearch(string searchTerms);
+        Task<RedirectResult> PerformSearch(string searchTerms);
     }
 }
