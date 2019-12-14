@@ -11,8 +11,7 @@ Install-Package MintPlayer.AspNetCore.OpenSearch
 ### Adding OpenSearch middleware
 Add OpenSearch before UseMVC in the middleware pipeline (Startup@Configure):
 
-    app.UseOpenSearch(options =>
-    {
+    app.UseOpenSearch(options => {
         options.OsdxEndpoint =  "/opensearch.xml";
         options.SearchUrl = "/api/Subject/opensearch/redirect/{searchTerms}";
         options.SuggestUrl = "/api/Subject/opensearch/suggest/{searchTerms}";
@@ -21,6 +20,30 @@ Add OpenSearch before UseMVC in the middleware pipeline (Startup@Configure):
         options.Description = "Search music on MintPlayer";
         options.Contact = "email@example.com";
     });
+
+### Adding OpenSearch services
+Register the services for this package (Startup@ConfigureServices):
+
+    services.AddOpenSearch<Services.OpenSearchService>();
+
+### Adding the managed handler (OpenSearchService)
+This is an example implementation of the IOpenSearchService:
+
+    public class OpenSearchService : IOpenSearchService
+    {
+        public async Task<RedirectResult> PerformSearch(string searchTerms)
+        {
+            return new RedirectResult($"/{searchTerms}");
+        }
+
+        public async Task<IEnumerable<string>> ProvideSuggestions(string searchTerms)
+        {
+            return new[] {
+                new string(searchTerms.Reverse().ToArray())
+            };
+        }
+    }
+
 ### Reference OpenSearchDescription from HTML
 Open your index.html (angular app) or _ViewStart.cshtml (Razor) and add a link to your OpenSearchDescription:
 
