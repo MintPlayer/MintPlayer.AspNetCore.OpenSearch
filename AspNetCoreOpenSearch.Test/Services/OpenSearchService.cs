@@ -30,7 +30,7 @@ namespace AspNetCoreOpenSearch.Test.Services
             //{
             //    var subjectRepository = scope.ServiceProvider.GetService<ISubjectRepository>();
             //}
-            return new[] { searchTerms, new string(searchTerms.Reverse().ToArray()) };
+            return new[] { searchTerms + 'o', new string(searchTerms.Reverse().ToArray()) };
         }
     }
 }

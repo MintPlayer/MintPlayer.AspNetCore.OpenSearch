@@ -5,12 +5,12 @@
     <Authors>MintPlayer</Authors>
     <Description>This package allows you to easily add an OpenSearch engine to your website</Description>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
-    <PackageProjectUrl>https://github.com/MusicDemons/AspNetCoreOpenSearch</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/MusicDemons/AspNetCoreOpenSearch</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/MintPlayer/AspNetCoreOpenSearch</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/MintPlayer/AspNetCoreOpenSearch</RepositoryUrl>
     <RepositoryType>Git</RepositoryType>
     <PackageTags>ASP.NET Core, OpenSearch</PackageTags>
     <PackageId>MintPlayer.AspNetCore.OpenSearch</PackageId>
-    <Version>1.0.4</Version>
+    <Version>1.0.5</Version>
   </PropertyGroup>
 
   <ItemGroup>
