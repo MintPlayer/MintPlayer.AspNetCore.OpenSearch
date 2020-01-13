@@ -5,6 +5,9 @@ using AspNetCoreOpenSearch.Options;
 using Microsoft.AspNetCore.Routing;
 using System.Net.Http;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
+using Microsoft.Extensions.Configuration;
+using System.Diagnostics;
 
 namespace AspNetCoreOpenSearch.Extensions
 {
@@ -15,15 +18,19 @@ namespace AspNetCoreOpenSearch.Extensions
             return services.AddSingleton<IOpenSearchService, TService>();
         }
 
-        public static IApplicationBuilder UseOpenSearch(this IApplicationBuilder app, Action<OpenSearchOptions> options) 
+        public static IApplicationBuilder UseOpenSearch(this IApplicationBuilder app) 
         {
             #region Compile opensearch options
-            var opt = new OpenSearchOptions();
-            options(opt);
+            var opts = app.ApplicationServices.GetService<IOptions<OpenSearchOptions>>();
+            var options = opts.Value;
+
+            Debug.WriteLine(options.Description);
             #endregion
 
+            if (options == null) throw new Exception("tarara");
+
             #region Check OSDX endpoint format
-            if (!opt.OsdxEndpoint.StartsWith('/'))
+            if (!options.OsdxEndpoint.StartsWith('/'))
                 throw new Exception(@"OpenSearch endpoint must start with ""/""");
             #endregion
 
@@ -34,34 +41,34 @@ namespace AspNetCoreOpenSearch.Extensions
             #region Handle routes specific to this package
             var builder = new RouteBuilder(app);
             builder
-                .MapVerb("GET", opt.OsdxEndpoint, async (context) =>
+                .MapVerb("GET", options.OsdxEndpoint, async (context) =>
                 {
                     #region Return OSDX
                     context.Response.ContentType = "application/opensearchdescription+xml; charset=utf-8";
-                    context.Response.Headers["Content-Disposition"] = $"attachment; filename={opt.ShortName}.osdx";
+                    context.Response.Headers["Content-Disposition"] = $"attachment; filename={options.ShortName}.osdx";
                     await context.WriteModelAsync(new Data.OpenSearchDescription
                     {
-                        ShortName = opt.ShortName,
-                        Description = opt.Description,
+                        ShortName = options.ShortName,
+                        Description = options.Description,
                         InputEncoding = "UTF-8",
                         Image = new Data.Image
                         {
                             Width = 16,
                             Height = 16,
-                            Url = $"{context.Request.Scheme}://{context.Request.Host.Value}{context.Request.PathBase}{opt.ImageUrl}",
+                            Url = $"{context.Request.Scheme}://{context.Request.Host.Value}{context.Request.PathBase}{options.ImageUrl}",
                             Type = "image/png"
                         },
                         Urls = new[] {
-                            new Data.Url { Type = "text/html", Method = "GET", Template = $"{context.Request.Scheme}://{context.Request.Host.Value}{context.Request.PathBase}{opt.SearchUrl}" },
-                            new Data.Url { Type = "application/x-suggestions+json", Method = "GET", Template = $"{context.Request.Scheme}://{context.Request.Host.Value}{context.Request.PathBase}{opt.SuggestUrl}" },
-                            new Data.Url { Type = "application/opensearchdescription+xml", Relation = "self", Template = $"{context.Request.Scheme}://{context.Request.Host.Value}{context.Request.PathBase}{opt.OsdxEndpoint}" }
+                            new Data.Url { Type = "text/html", Method = "GET", Template = $"{context.Request.Scheme}://{context.Request.Host.Value}{context.Request.PathBase}{options.SearchUrl}" },
+                            new Data.Url { Type = "application/x-suggestions+json", Method = "GET", Template = $"{context.Request.Scheme}://{context.Request.Host.Value}{context.Request.PathBase}{options.SuggestUrl}" },
+                            new Data.Url { Type = "application/opensearchdescription+xml", Relation = "self", Template = $"{context.Request.Scheme}://{context.Request.Host.Value}{context.Request.PathBase}{options.OsdxEndpoint}" }
                         }.ToList(),
-                        Contact = opt.Contact,
+                        Contact = options.Contact,
                         SearchForm = $"{context.Request.Scheme}://{context.Request.Host.Value}{context.Request.PathBase}/"
                     });
                     #endregion
                 })
-                .MapVerb("GET", opt.SuggestUrl, async (context) =>
+                .MapVerb("GET", options.SuggestUrl, async (context) =>
                 {
                     var searchTerms = (string)context.GetRouteValue("searchTerms");
                     var suggestions = await service.ProvideSuggestions(searchTerms);
@@ -72,7 +79,7 @@ namespace AspNetCoreOpenSearch.Extensions
                         suggestions.ToArray()
                     });
                 })
-                .MapVerb("GET", opt.SearchUrl, async (context) =>
+                .MapVerb("GET", options.SearchUrl, async (context) =>
                 {
                     var searchTerms = (string)context.GetRouteValue("searchTerms");
                     var result = await service.PerformSearch(searchTerms);

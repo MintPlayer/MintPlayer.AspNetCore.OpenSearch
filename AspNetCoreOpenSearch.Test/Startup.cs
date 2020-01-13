@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AspNetCoreOpenSearch.Extensions;
+using AspNetCoreOpenSearch.Options;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -24,7 +25,24 @@ namespace AspNetCoreOpenSearch.Test
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();
+            services
+                .AddControllersWithViews(options =>
+                {
+                    options.RespectBrowserAcceptHeader = true;
+                })
+                .AddXmlSerializerFormatters();
+
+            services.AddOpenSearch<Services.OpenSearchService>();
+            services.Configure<OpenSearchOptions>(options =>
+            {
+                options.OsdxEndpoint = "/opensearch.xml";
+                options.SearchUrl = "/api/Subject/opensearch/redirect/{searchTerms}";
+                options.SuggestUrl = "/api/Subject/opensearch/suggest/{searchTerms}";
+                options.ImageUrl = "/assets/logo/music_note_16.png";
+                options.ShortName = "MintPlayer";
+                options.Description = "Search music on MintPlayer";
+                options.Contact = "email@example.com";
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -41,16 +59,7 @@ namespace AspNetCoreOpenSearch.Test
                 app.UseHsts();
             }
             app.UseHttpsRedirection();
-            app.UseOpenSearch(options =>
-            {
-                options.OsdxEndpoint = "/opensearch.xml";
-                options.SearchUrl = "/api/Subject/opensearch/redirect/{searchTerms}";
-                options.SuggestUrl = "/api/Subject/opensearch/suggest/{searchTerms}";
-                options.ImageUrl = "/assets/logo/music_note_16.png";
-                options.ShortName = "MintPlayer";
-                options.Description = "Search music on MintPlayer";
-                options.Contact = "email@example.com";
-            });
+            app.UseOpenSearch();
             app.UseStaticFiles();
 
             app.UseRouting();
