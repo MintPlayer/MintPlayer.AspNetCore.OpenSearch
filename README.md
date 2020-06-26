@@ -1,4 +1,6 @@
 # MintPlayer.AspNetCore.OpenSearch
+[![NuGet Version](https://img.shields.io/nuget/v/MintPlayer.AspNetCore.OpenSearch.svg?style=flat)](https://www.nuget.org/packages/MintPlayer.AspNetCore.OpenSearch/)
+
 Easily add OpenSearch to your ASP.NET Core website
 ## NuGet package
 https://www.nuget.org/packages/MintPlayer.AspNetCore.OpenSearch/
