@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\AspNetCoreOpenSearch\AspNetCoreOpenSearch.csproj" />
+    <ProjectReference Include="..\MintPlayer.AspNetCore.OpenSearch\MintPlayer.AspNetCore.OpenSearch.csproj" />
   </ItemGroup>
 
 
