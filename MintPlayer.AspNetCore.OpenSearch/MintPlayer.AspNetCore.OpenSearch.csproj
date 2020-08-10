@@ -1,24 +1,27 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>netcoreapp2.2</TargetFramework>
-    <Authors>MintPlayer</Authors>
-    <Description>This package allows you to easily add an OpenSearch engine to your website</Description>
-    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
-    <PackageProjectUrl>https://github.com/MintPlayer/AspNetCoreOpenSearch</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/MintPlayer/AspNetCoreOpenSearch</RepositoryUrl>
-    <RepositoryType>Git</RepositoryType>
-    <PackageTags>ASP.NET Core, OpenSearch</PackageTags>
-    <PackageId>MintPlayer.AspNetCore.OpenSearch</PackageId>
-    <Version>1.0.5</Version>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>netcoreapp3.1</TargetFramework>
+		<Authors>Pieterjan De Clippel</Authors>
+		<Company>MintPlayer</Company>
+		<Description>This package allows you to easily add an OpenSearch engine to your website</Description>
+		<RepositoryUrl>https://github.com/MintPlayer/MintPlayer.AspNetCore.OpenSearch</RepositoryUrl>
+		<RepositoryType>Git</RepositoryType>
+		<Version>1.1.0</Version>
+		<PackageId>MintPlayer.AspNetCore.OpenSearch</PackageId>
+		<PackageTags>ASP.NET Core, OpenSearch</PackageTags>
+		<PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+		<PackageProjectUrl>https://github.com/MintPlayer/MintPlayer.AspNetCore.OpenSearch</PackageProjectUrl>
+		<IncludeSymbols>true</IncludeSymbols>
+		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <None Remove=".gitignore" />
-  </ItemGroup>
+	<ItemGroup>
+		<FrameworkReference Include="Microsoft.AspNetCore.App" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
-  </ItemGroup>
+	<ItemGroup>
+		<None Remove=".gitignore" />
+	</ItemGroup>
 
 </Project>

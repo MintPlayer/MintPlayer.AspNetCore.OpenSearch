@@ -7,7 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
-namespace AspNetCoreOpenSearch.Test
+namespace MintPlayer.AspNetCore.OpenSearch.Test31
 {
     public class Program
     {

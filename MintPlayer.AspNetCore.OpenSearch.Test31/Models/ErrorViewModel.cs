@@ -1,6 +1,6 @@
 using System;
 
-namespace AspNetCoreOpenSearch.Test.Models
+namespace MintPlayer.AspNetCore.OpenSearch.Test31.Models
 {
     public class ErrorViewModel
     {

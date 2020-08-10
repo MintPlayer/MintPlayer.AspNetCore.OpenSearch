@@ -8,6 +8,4 @@
     <ProjectReference Include="..\MintPlayer.AspNetCore.OpenSearch\MintPlayer.AspNetCore.OpenSearch.csproj" />
   </ItemGroup>
 
-
-
 </Project>

@@ -1,11 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.DependencyInjection;
+﻿using AspNetCoreOpenSearch;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace AspNetCoreOpenSearch.Test.Services
+namespace MintPlayer.AspNetCore.OpenSearch.Test31.Services
 {
     public class OpenSearchService : IOpenSearchService
     {
