@@ -4,10 +4,9 @@
 [![Build Status](https://travis-ci.org/MintPlayer/MintPlayer.AspNetCore.OpenSearch.svg?branch=master)](https://travis-ci.org/MintPlayer/MintPlayer.AspNetCore.OpenSearch)
 ![.NET Core](https://github.com/MintPlayer/MintPlayer.AspNetCore.OpenSearch/workflows/.NET%20Core/badge.svg)
 [![License](https://img.shields.io/badge/License-Apache%202.0-green.svg)](https://opensource.org/licenses/Apache-2.0)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/5d57f1b6038a44cf9ae771632321cddb)](https://www.codacy.com/gh/MintPlayer/MintPlayer.AspNetCore.OpenSearch?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=MintPlayer/MintPlayer.AspNetCore.OpenSearch&amp;utm_campaign=Badge_Grade)
 
 Easily add OpenSearch to your ASP.NET Core website
-## NuGet package
-https://www.nuget.org/packages/MintPlayer.AspNetCore.OpenSearch/
 ## Installation
 ### NuGet package manager
 Open the NuGet package manager and install `MintPlayer.AspNetCore.OpenSearch` in your project
